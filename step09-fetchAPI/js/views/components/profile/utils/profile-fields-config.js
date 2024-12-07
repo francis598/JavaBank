@@ -1,0 +1,68 @@
+const config = {
+  id: {
+    id: "customerId",
+    name: "id",
+    type: "hidden",
+    title: "",
+    required: false,
+    minLength: 0,
+  },
+  "First Name": {
+    id: "firstName",
+    name: "firstName",
+    type: "text",
+    title: "Please provide a first name.",
+    required: true,
+    minLength: 3,
+  },
+  "Last Name": {
+    id: "lastName",
+    name: "lastName",
+    type: "text",
+    title: "Please provide a last name.",
+    required: true,
+    minLength: 3,
+  },
+  "Phone number": {
+    id: "phone",
+    name: "phone",
+    type: "tel",
+    title: "Please provide a valid 9-digit phone number.",
+    required: true,
+    minLength: 9,
+  },
+  Email: {
+    id: "email",
+    name: "email",
+    type: "email",
+    title: "Please provide a valid email address.",
+    required: true,
+    minLength: 3,
+  },
+  Street: {
+    id: "street",
+    name: "street",
+    type: "text",
+    title: "Please provide a valid street address.",
+    required: true,
+    minLength: 3,
+  },
+  City: {
+    id: "city",
+    name: "city",
+    type: "text",
+    title: "Please provide a valid city address.",
+    required: true,
+    minLength: 3,
+  },
+  "Zip Code": {
+    id: "zipCode",
+    name: "zipCode",
+    type: "text",
+    title: "Please provide a valid zip code.",
+    required: true,
+    minLength: 8,
+  },
+};
+
+export { config };
