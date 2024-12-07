@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaBank: Account Statement</title>
+    <link rel="stylesheet" th:href="@{/templates/styles/style.css}" type="text/css">
+
+</head>
+<body class="account-statement-page">
+<div class="container">
+    <a th:href="@{'/customer/' + ${customerId}}" class="btn go-back"><img th:src="@{/templates/assets/arrow-left.svg}"/>Go back</a>
+    <div class="account-container">
+        <div class="header">
+            <h1>Account Statement</h1>
+        </div>
+        <table class="table" id="statement-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Establishment</th>
+                <th>Recipient</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction : ${transactions}">
+                <th th:text="${transaction.id}"></th>
+                <th th:text="${#numbers.formatDecimal(transaction.amount, 1, 'POINT', 2, 'POINT') + '€'}"></th>
+                <th>
+                    <div class="tag" th:classappend="${transaction.transactionType.toString().toLowerCase()}">
+                        <span th:text="${transaction.transactionType}"></span>
+                    </div>
+                </th>
+                <!-- check out the elvis operator in Java: https://www.baeldung.com/java-8-elvis-operator-implementation -->
+                <th th:text="${transaction.purchase?.establishment?.name ?: '-'}"></th>
+                <th th:text="${transaction.recipient?.name ?: '-'}"></th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
