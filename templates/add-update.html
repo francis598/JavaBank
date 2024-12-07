@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaBank: Add Customer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          modelType="text/css"/>
+    <link rel="stylesheet" th:href="@{/templates/styles/style.css}" type="text/css">
+</head>
+<body>
+<div class="edit-container">
+    <div class="profile-panel">
+        <div class="profile-header">
+            <div class="no-avatar"></div>
+        </div>
+        <form class="details-container" th:object="${customer}" th:action="@{/customer}" method="post">
+            <article>
+                <h3>Personal details</h3>
+                <div class="details">
+                    <div class="card-detail">
+                        <label>First Name</label>
+                        <input type="text" th:field="*{firstName}" pattern=".*\S.*" title="Please provide a first name." required minlength="3" th:placeholder="John">
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger small"></span>
+                    </div>
+                    <div class="card-detail">
+                        <label>Last Name</label>
+                        <input type="text" th:field="*{lastName}" pattern=".*\S.*" title="Please provide a last name." required minlength="3" th:placeholder="Doe">
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger small"></span>
+                    </div>
+                    <div class="card-detail">
+                        <label>Phone number</label>
+                        <input type="tel" th:field="*{phone}" pattern="[0-9]{9}" title="Please provide a valid 9-digit phone number." required th:placeholder="999999999">
+                        <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger small"></span>
+                    </div>
+                    <div class="card-detail">
+                        <label>Email</label>
+                        <input type="email" th:field="*{email}" title="Please provide a valid email address." required th:placeholder="'john.doe@gmail.com'">
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger small"></span>
+                    </div>
+                    <div class="card-detail">
+                        <label>Street</label>
+                        <input type="text" th:field="*{addressDto.street}" title="Please provide a valid street address." required th:placeholder="'Elm Street'">
+                        <span th:if="${#fields.hasErrors('${customer.addressDto.street}')}" th:errors="${customer.addressDto.street}" class="text-danger small"></span>
+                    </div>
+                    <div class="card-detail">
+                        <label>City</label>
+                        <input type="text" th:field="*{addressDto.city}" title="Please provide a valid city address." required th:placeholder="Springfield">
+                        <span th:if="${#fields.hasErrors('${customer.addressDto.city}')}" th:errors="${customer.addressDto.city}" class="text-danger small"></span>
+                    </div>
+                    <div class="card-detail">
+                        <label>Zip Code</label>
+                        <input type="text" th:field="*{addressDto.zipCode}" title="Please provide a valid zip code." required th:placeholder="'8888-888'">
+                        <span th:if="${#fields.hasErrors('${customer.addressDto.zipCode}')}" th:errors="${customer.addressDto.zipCode}" class="text-danger small"></span>
+                    </div>
+                </div>
+                <input type="hidden" th:field="*{id}"/>
+            </article>
+            <article>
+                <div class="btn-container fullwidth">
+                    <button type="submit" class="btn CTA">Save Changes</button>
+                    <a th:href="@{/}" class="btn">Cancel</a>
+                </div>
+            </article>
+        </form>
+    </div>
+</div>
+</body>
+</html>
